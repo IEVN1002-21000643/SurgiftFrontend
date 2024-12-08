@@ -1,0 +1,43 @@
+<div class="w-full px-20 py-5 flex flex-wrap justify-between">
+    <div class="w-4/5 border border-gray-400 rounded-lg py-3 px-10 flex flex-wrap items-stretch justify-center">
+        <div class="w-5/12 flex items-center flex-wrap">
+            <div class="w-full">Nombre: {{dataSource.Ordenes[0].nombre}}</div>
+            <div class="w-full">Correo: {{dataSource.Ordenes[0].correo}}</div>
+            <div class="w-full">Telefono: {{dataSource.Ordenes[0].telefono}}</div>
+        </div>
+        <div class="w-6/12 flex items-center flex-wrap">
+            <div class="w-full">Direccion: {{dataSource.Ordenes[0].direccion}}</div>
+            <div class="w-full">Fecha: {{dataSource.Ordenes[0].fechaPedido | date}}</div>
+            <div class="w-full">Destinatario: {{dataSource.Ordenes[0].destinatario}}</div>
+        </div>
+        <table class="w-full m-2">
+            <thead class="w-full">
+                <tr class="w-full">
+                    <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300"></td>
+                    <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Nombre</td>
+                    <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Categoria</td>
+                    <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Precio</td>
+                    <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Cantidad</td>
+                    <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Subtotal</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="group border rounded border-gray-300 shadow-inner shadow-gray-200" *ngFor="let producto of dataSource.Ordenes[0].productos">
+                    <td  class="p-2 flex justify-center items-center"><div class="w-24 h-24 overflow-hidden flex justify-center items-center"><img class="w-full" [src]="'http://127.0.0.1:5000/'+producto.producto[0].foto"></div></td>
+                    <td  class="p-2"><div>{{producto.producto[0].nombre}}</div></td>
+                    <td  class="p-2">{{producto.producto[0].categoria}}</td>
+                    <td  class="p-2">{{producto.precio | currency}}</td>
+                    <td  class="p-2">{{producto.cantidad}}</td>
+                    <td  class="p-2">{{producto.subtotal | currency}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="w-2/12 border border-gray-400 rounded-lg py-3 px-10 flex flex-wrap h-fit">
+        <div class="w-full flex flex-wrap items-stretch justify-center">
+            <div class="w-full">Estatus: {{dataSource.Ordenes[0].estatus}}</div>
+            <div class="w-full">Total: {{dataSource.Ordenes[0].total | currency}}</div>
+            <div><button *ngIf="dataSource.Ordenes[0].estatus!='Cancelado'" class="py-2 px-5 my-2 mx-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" (click)="cancelarPedido()">Cancelar</button></div>
+        </div>
+    </div>
+</div>

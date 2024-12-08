@@ -1,0 +1,15 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-full flex flex-wrap justify-center items-center">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-2/5 bg-gray-150 shadow-gray-200 shadow-lg rounded-xl py-10 px-5">
+            <h2 class="w-full text-center text-3xl font-bold">Iniciar Sesión</h2>
+            <div class="py-10">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="email" name="correo" placeholder="Correo" formControlName="correo">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="password" name="contrasena" placeholder="Contraseña" formControlName="password">
+                <input class="py-2 px-5 my-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" type="submit" value="Iniciar Sesión">
+                <div class="footer text-blue-500">
+                    ¿Nuevo en Surgift? <a class="text-yellow-400" [routerLink]="['/auth/signup']">Registrate</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

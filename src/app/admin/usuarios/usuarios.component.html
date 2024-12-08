@@ -1,0 +1,61 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-full flex flex-wrap my-2">
+        <button class="px-2 py-1 border border-blue-500 text-blue-500 rounded transition-all hover:rounded-none hover:bg-blue-500 hover:text-white" [routerLink]="['/admin/nuevoUsuario']">Agregar Usuario</button>
+    </div>
+    <div class="w-full flex flex-wrap my-2">
+        <div class="mx-2 text-black hover:text-blue-500" (click)="verTodos()" >Todos</div>
+        <div class="mx-2 text-black hover:text-blue-500" (click)="verPapelera()">Papelera</div>
+    </div>
+    <table *ngIf="showTodos" class="w-full">
+        <thead class="w-full">
+            <tr class="w-full">
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Nombre</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Correo</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Direccion</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Fecha Creacion</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Estatus</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="group border rounded border-gray-300 shadow-inner shadow-gray-200" *ngFor="let usuario of usuarioDisponible">
+                <td class="p-2 flex justify-center items-center"><div class="w-24 h-24 overflow-hidden flex justify-center items-center"><img class="w-full" [src]="'http://127.0.0.1:5000/'+usuario.foto"></div></td>
+                <td class="p-2"><div>{{usuario.nombre}}</div><div class="group-hover:text-black text-white transition-all">idUsuario: {{usuario.idUsuario}}</div></td>
+                <td class="p-2">{{usuario.correo}}</td>
+                <td class="p-2">{{usuario.direccion}}</td>
+                <td class="p-2">{{usuario.fechaCreacion}}</td>
+                <td class="p-2">{{usuario.estatus}}</td>
+                <td class="p-2"><div [routerLink]="['/admin/editarUsuario',usuario.idUsuario]" class="w-full border-blue-600 rounded bg-blue-500 text-white py-2 px-3 text-center">Editar</div></td>
+                <td class="p-2"><div (click)="changeEstatus(usuario.idUsuario, '2')" class="w-full border-red-600 rounded bg-red-500 text-white py-2 px-3 text-center">Papelera</div></td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="showPapelera" class="w-full">
+        <thead class="w-full">
+            <tr class="w-full">
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Nombre</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Correo</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Direccion</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Fecha Creacion</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Estatus</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="group border rounded border-gray-300 shadow-inner shadow-gray-200" *ngFor="let usuario of usuarioPapelera">
+                <td class="p-2 flex justify-center items-center"><div class="w-24 h-24 overflow-hidden flex justify-center items-center"><img class="w-full" [src]="'http://127.0.0.1:5000/'+usuario.foto"></div></td>
+                <td class="p-2"><div>{{usuario.nombre}}</div><div class="group-hover:text-black text-white transition-all">idUsuario: {{usuario.idUsuario}}</div></td>
+                <td class="p-2">{{usuario.correo}}</td>
+                <td class="p-2">{{usuario.direccion}}</td>
+                <td class="p-2">{{usuario.fechaCreacion}}</td>
+                <td class="p-2">{{usuario.estatus}}</td>
+                <td class="p-2"><div (click)="changeEstatus(usuario.idUsuario, '1')" class="w-full border-blue-600 rounded bg-blue-500 text-white py-2 px-3 text-center">Publicar</div></td>
+                <td class="p-2"><div (click)="eliminarUsuario(usuario.idUsuario)" class="w-full border-red-600 rounded bg-red-500 text-white py-2 px-3 text-center">Eliminar</div></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

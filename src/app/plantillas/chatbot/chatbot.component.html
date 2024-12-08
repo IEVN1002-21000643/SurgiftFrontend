@@ -1,0 +1,62 @@
+<div class="flex right-2 items-end justify-end z-50">
+    <div class="overflow-hidden shadow-md rounded-2xl transition-all flex flex-wrap me-2 self-top flex-col" [style]="stylebot">
+        <div class="w-full bg-yellow-400 h-20 flex">
+            <div class="w-20 h-20 flex justify-center items-center"><img class="w-14 h-14 rounded-full overflow-hidden" src="/assets/img/logo.png"></div>
+            <div class="w-full flex justify-start items-center px-3 text-white text-2xl font-bold">
+                Wowgift
+            </div>
+        </div>
+        <div class="bg-white w-full flex flex-wrap content-start grow overflow-y-scroll overflow-x-hidden">
+            <div class="w-full flex flex-wrap max-h-fit" *ngFor="let mensaje of conversacion">
+                <div class="w-full flex items-end justify-start" *ngIf="mensaje.tipo =='bot'">
+                    <div class="h-14 w-1/12">
+                        <img src="/assets/img/logo.png" alt="">
+                    </div>
+                    <div class="w-10/12 p-2">
+                        <div class="max-w-11/12 w-fit justify-start bg-slate-100 rounded-xl">
+                            <div class="p-2">
+                                {{mensaje.mensaje}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-end" *ngIf="mensaje.tipo =='user'">
+                    <div class="w-10/12 p-2 flex justify-end">
+                        <div class="max-w-11/12 w-fit bg-yellow-100 rounded-xl">
+                            <div class="p-2">
+                                {{mensaje.mensaje}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex flex-wrap max-h-fit" *ngIf="esperando">
+                <div class="w-full flex items-end justify-start">
+                    <div class="h-14 w-1/12">
+                        <img src="/assets/img/logo.png" alt="">
+                    </div>
+                    <div class="w-10/12 p-2">
+                        <div class="max-w-11/12 w-fit justify-start bg-slate-100 rounded-xl">
+                            <div class="p-2 h-10 flex">
+                                <div class="bolitas relative w-3 h-3 bg-gray-400 rounded-full overflow-hidden mx-1"></div>
+                                <div class="bolitas2 relative w-3 h-3 bg-gray-400 rounded-full overflow-hidden mx-1"></div>
+                                <div class="bolitas3 relative w-3 h-3 bg-gray-400 rounded-full overflow-hidden mx-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-16 border-t flex self-end">
+            <form [formGroup]="formChat" class="flex w-full h-12">
+                <input class="w-10/12 h-16 py-2 px-4" type="text" placeholder="Escribe aqui ..." name="mensaje" formControlName="mensaje">
+                <div (click)="mandarMensaje()" class="h-12 w-14 m-2 p-1 rounded-full overflow-hidden bg-yellow-400 hover:bg-yellow-500 focus:bg-yellow-600 active:bg-yellow-600 active:scale-95">
+                    <img class="w-full p-2" src="/assets/img/enviar.png" alt="">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div (click)="abrirBot()" class="w-16 h-16 rounded-full overflow-hidden bg-yellow-400 shadow-md flex justify-center items-center">
+        <img class="w-16 h-16 p-1" [src]="imageCircle" alt="">
+    </div>
+</div>

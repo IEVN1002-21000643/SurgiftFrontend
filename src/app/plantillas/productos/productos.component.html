@@ -1,0 +1,55 @@
+<div class="w-full px-20 py-5 flex flex-wrap justify-center">
+    <div class="flex flex-wrap w-3/4 bg-slate-50 rounded-xl p-10">
+        <div class="w-5/12 shadow-gray-400 shadow-lg p-10 h-fit">
+            <div class="w-full max-h-80 overflow-hidden flex justify-center items-center">
+                <img [src]="'http://127.0.0.1:5000/'+dataProducto.foto" alt="Camisa" class="main-image">
+            </div>
+            <div class="grid grid-cols-4 mt-3">
+                <div class="flex justify-center items-center overflow-hidden w-16 h-16 rounded-lg shadow-lg">
+                    <img [src]="'http://127.0.0.1:5000/'+dataProducto.foto" alt="camisa 1">
+                </div>
+                <div class="flex justify-center items-center overflow-hidden w-16 h-16 rounded-lg shadow-lg">
+                    <img [src]="'http://127.0.0.1:5000/'+dataProducto.foto" alt="camisa 2">
+                </div>
+                <div class="flex justify-center items-center overflow-hidden w-16 h-16 rounded-lg shadow-lg">
+                    <img [src]="'http://127.0.0.1:5000/'+dataProducto.foto" alt="camisa 3">
+                </div>
+                <div class="flex justify-center items-center overflow-hidden w-16 h-16 rounded-lg shadow-lg">
+                    <img [src]="'http://127.0.0.1:5000/'+dataProducto.foto" alt="camisa 4">
+                </div>
+            </div>
+        </div>
+        <div class="w-7/12 p-10">
+            <div class="w-full">
+                <h1 class="font-bold text-yellow-900 text-4xl my-2">{{dataProducto.nombre}}</h1>
+                <h2 class="text-base my2">{{dataProducto.descripcionCorta}}</h2>
+                <p class="font-bold text-yellow-400 text-3xl my-2">{{dataProducto.precio | currency}} <span class="text-xl">MXN</span></p>
+                <div>Categorias: {{dataProducto.categoria}}</div>
+            </div>
+            <div class="w-full my-10">
+                <form class="w-full flex flex-wrap justify-center" (ngSubmit)="onSubmit()" action="">
+                    <div class="w-full flex flex-wrap text-base justify-start my-2">
+                        <label class="flex-grow flex items-center w-1/5" for="cantidad">Cantidad </label>
+                        <input type="button" class="border-t border-s border-b ms-10 border-yellow-400 bg-transparent text-yellow-400 py-1 px-3 rounded-tl rounded-bl transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" value="-" (click)="changeCantidad(-1)"/>
+                        <input class="border w-20 h-12 border-yellow-400 text-center" type="number" name="cantidad" [(ngModel)]="dataProducto.cantidad" min="1">
+                        <input type="button" class="border-t border-e border-b border-yellow-400 bg-transparent text-yellow-400 py-1 px-3 rounded-tr rounded-br transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" value="+" (click)="changeCantidad(1)"/>
+                    </div>
+                    <div class="w-full my-2">
+                        <div class="w-full">
+                            <label>Es un regalo? </label>
+                            <input (click)="changeGift()" type="checkbox" name="" id="">
+                        </div>
+                        <div *ngIf="isGift==true" class="w-full">
+                            <app-decoracion (hijoEvento)="recibirDatos($event)"></app-decoracion>
+                        </div>
+                    </div>
+                    <input class="text-center w-2/3 overflow-hidden border-2 border-yellow-400 bg-transparent text-yellow-400 py-1 px-3 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" type="submit" value="Agregar al carro"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="w-full my-5 p-10">
+        <div class="w-full">Descripción</div>
+        <div class="w-full">{{dataProducto.descripcionLarga}}</div>
+    </div>
+</div>

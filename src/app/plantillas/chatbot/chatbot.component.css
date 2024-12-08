@@ -1,0 +1,29 @@
+@keyframes esperando{
+    0%{
+        top:0%
+    }
+    50%{
+        top:50%
+    }
+    100%{
+        top:0%
+    }
+}
+.bolitas{
+    animation-name: esperando;
+    animation-duration: 1s;
+    animation-delay: 0ms;
+    animation-iteration-count: infinite;
+}
+.bolitas2{
+    animation-name: esperando;
+    animation-duration: 1s;
+    animation-delay: 200ms;
+    animation-iteration-count: infinite;
+}
+.bolitas3{
+    animation-name: esperando;
+    animation-duration: 1s;
+    animation-delay: 400ms;
+    animation-iteration-count: infinite;
+}

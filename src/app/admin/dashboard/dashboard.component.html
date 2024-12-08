@@ -1,0 +1,126 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-full grid grid-cols-5 my-5">
+        <div class="w-full px-2">
+            <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                <div class="text-4xl font-bold">
+                    <div class="w-full text-center text-4xl">{{totalVenta | currency}}</div>
+                    <div class="w-full text-center text-2xl">Ventas Totales</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full px-2">
+            <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                <div class="text-4xl font-bold">
+                    <div class="w-full text-center text-4xl">{{promProducto | number}}</div>
+                    <div class="w-full text-center text-2xl">Prom. Producto x orden</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full px-2">
+            <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="text-4xl font-bold">
+                        <div class="w-full text-center text-4xl">{{promVenta | currency}}</div>
+                        <div class="w-full text-center text-2xl">Prom. Venta x Orden</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full px-2">
+            <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="text-4xl font-bold">
+                        <div class="w-full text-center text-4xl">{{numUsuario}}</div>
+                        <div class="w-full text-center text-2xl">Num. Usuarios</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full px-2">
+            <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                <div class="w-full h-40 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="font-bold">
+                        <div class="w-full text-center text-4xl">{{numOrdenes}}</div>
+                        <div class="w-full text-center text-2xl">Num. Ordenes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full flex flex-wrap">
+        <div class="w-3/4 grid grid-cols-3">
+            <div class="w-full px-2 mb-2">
+                <div [routerLink]="['/admin/usuarios']" class="w-full h-44 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="w-4/5 flex flex-wrap justify-center items-center">
+                        <div class="w-20 overflow-hidden">
+                            <img src="assets/img/usuario.png">
+                        </div>
+                        <div class="w-full text-2xl font-bold text-center">Usuarios</div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-2 mb-2">
+                <div [routerLink]="['/admin/productos']" class="w-full h-44 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="w-4/5 flex flex-wrap justify-center items-center">
+                        <div class="w-20 overflow-hidden">
+                            <img src="assets/img/productos.png">
+                        </div>
+                        <div class="w-full text-2xl font-bold text-center">Productos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-2 mb-2">
+                <div [routerLink]="['/admin/repartidores']" class="w-full h-44 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="w-4/5 flex flex-wrap justify-center items-center">
+                        <div class="w-20 overflow-hidden">
+                            <img src="assets/img/repartidor.png">
+                        </div>
+                        <div class="w-full text-2xl font-bold text-center">Repartidores</div>
+                    </div>
+                </div>
+            </div>
+            <div [routerLink]="['/admin/graficas']" class="w-full px-2 mt-2">
+                <div class="w-full h-44 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="w-4/5 flex flex-wrap justify-center items-center">
+                        <div class="w-20 overflow-hidden">
+                            <img src="assets/img/grafica.png">
+                        </div>
+                        <div class="w-full text-2xl font-bold text-center">Gráficas</div>
+                    </div>
+                </div>
+            </div>
+            <div [routerLink]="['/admin/conversaciones']" class="w-full px-2 mt-2">
+                <div class="w-full h-44 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="w-4/5 flex flex-wrap justify-center items-center">
+                        <div class="w-20 overflow-hidden">
+                            <img src="assets/img/conversaciones.png">
+                        </div>
+                        <div class="w-full text-2xl font-bold text-center">Conversaciones</div>
+                    </div>
+                </div>
+            </div>
+            <div [routerLink]="['/admin/Finanzas']" class="w-full px-2 mt-2">
+                <div class="w-full h-44 rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex justify-center items-center">
+                    <div class="w-4/5 flex flex-wrap justify-center items-center">
+                        <div class="w-20 overflow-hidden">
+                            <img src="assets/img/dinero.png">
+                        </div>
+                        <div class="w-full text-2xl font-bold text-center">Finanzas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div [routerLink]="['/admin/pedidos']" class="w-1/4 grow flex flex-wrap">
+            <div class="w-full px-2 flex flex-wrap grow">
+                <div class="w-full rounded-lg bg-slate-200 border border-slate-300 shadow-md shadow-gray-300 flex flex-wrap grow justify-center items-center">
+                    <div class="w-4/5 flex flex-wrap justify-center items-center">
+                        <div class="w-20 overflow-hidden">
+                            <img src="assets/img/pedidos.png">
+                        </div>
+                        <div class="w-full text-2xl font-bold text-center">Pedidos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

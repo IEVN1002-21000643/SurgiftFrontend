@@ -1,0 +1,54 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-3/4 px-4">
+        <div class="w-full bg-yellow-200 text-3xl font-bold text-center py-1">
+            {{nombreMes}}
+        </div>
+        <table class="w-full">
+            <thead class="w-full">
+                <tr class="w-full flex">
+                    <td class="w-full flex text-center justify-center">Domingo</td>
+                    <td class="w-full flex text-center justify-center">Lunes</td>
+                    <td class="w-full flex text-center justify-center">Martes</td>
+                    <td class="w-full flex text-center justify-center">Miércoles</td>
+                    <td class="w-full flex text-center justify-center">Jueves</td>
+                    <td class="w-full flex text-center justify-center">Viernes</td>
+                    <td class="w-full flex text-center justify-center">Sábado</td>
+                </tr>
+            </thead>
+            <tbody class="w-full">
+                <tr class="w-full flex" *ngFor="let semana of semanas">
+                    <td class="w-full flex text-center justify-end items-start h-20 p-2" [style]="dia.estilo" *ngFor="let dia of semana" (click)="onClickDay(dia)">
+                        {{ dia.dia }}
+                    </td>
+                  </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="w-1/4 flex flex-wrap border border-gray-400 py-2 px-3 h-fit">
+        <form class="w-full">
+            <div class="w-full text-center text-lg h-8">
+                {{diaSelect | date}}
+            </div>
+            <div class="w-full">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="text" name="nombre" placeholder="Nombre del destinatario" [(ngModel)]="nombre">
+            </div>
+            <div class="w-full border border-gray-400 py-2 px-4 flex flex-wrap justify-center">
+                <div *ngIf="listaProducto[0]!=undefined" class="w-full">
+                    <div class="w-full my-2">
+                        Todos estos regalos serán para: {{nombre}}
+                    </div>
+                    <div *ngFor="let producto of listaProducto[0]" class="w-full font-bold">
+                        {{producto.nombre}}<span class="font-thin">x{{producto.cantidad}}</span>
+                    </div>
+                    <div class="w-full flex flex-wrap justify-center mt-4">
+                        <input class="text-center w-2/3 overflow-hidden border-2 border-yellow-400 bg-blue-300 text-white py-1 px-3 rounded transition-all hover:bg-blue-500 hover:text-white font-bold text-lg active:bg-yellow-600 active:scale-95" type="submit" value="Asignar envío" (click)="onSubmit()" />
+                    </div>
+                </div>
+                <div *ngIf="listaProducto[0]==undefined" class="w-full flex justify-center flex-wrap">
+                    <div class="w-full text-center mb-2">Aun no cuentas con regalos</div>
+                    <div [routerLink]="['/tienda']" class="text-center w-2/3 overflow-hidden border-2 border-yellow-400 bg-blue-300 text-white py-1 px-3 rounded transition-all hover:bg-blue-500 hover:text-white font-bold text-lg active:bg-yellow-600 active:scale-95">Buscar regalo</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

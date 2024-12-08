@@ -1,0 +1,30 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-full flex flex-wrap justify-center items-center">
+        <form [formGroup]="formRegistro" enctype="multipart/form-data" (ngSubmit)="onSubmit()" class="w-2/5 bg-gray-150 shadow-gray-200 shadow-lg rounded-xl py-10 px-5">
+            <h2 class="w-full text-center text-3xl font-bold">Regístrate</h2>
+            <div class="py-10 flex flex-wrap justify-between">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="text" name="nombre" placeholder="Nombre" formControlName="nombre" >
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="email" name="correo" placeholder="Correo" formControlName="correo" >
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="estado" placeholder="Estado" formControlName="estado" >
+                <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="ciudad" placeholder="Ciudad" formControlName="ciudad" >
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="colonia" placeholder="Colonia" formControlName="colonia" >
+                <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="calle" placeholder="Calle" formControlName="calle" >
+                <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroExt" placeholder="Número Ext" formControlName="numExt" >
+                <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroInt" placeholder="Número Int" formControlName="numInt">
+                <input class="px-3 py-1 my-2 w-3/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="CP" placeholder="Código Postal" formControlName="cp" >
+                <input class="px-3 py-1 my-2 w-full rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="password" name="contrasena" placeholder="Contraseña" formControlName="password"  >
+                <input class="px-3 py-1 my-2 w-full rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="password" name="repetirContrasena" placeholder="Repite tu Contraseña" formControlName="repetirContrasena" >
+                <input class="py-1 my-2 w-full flex justify-center text-center" type="file" (change)="onFileChange($event)" name="foto" accept="image/*" formControlName="foto">
+                <div *ngIf="aviso!=''" class="w-full text-center text-red-600">
+                    {{aviso}}
+                </div>
+                <div class="w-full flex justify-center">
+                    <input class="py-2 px-5 my-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" type="submit" value="Registrarse">
+                </div>
+                <div class="text-blue-500 w-full flex justify-center">
+                    ¿Ya tienes cuenta? <a class="text-yellow-400" href="/auth/login">Entra aquí</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="w-full">
+    <form [formGroup]="decoForm" (change)="onSubmit()" class="w-full">
+        <div class="w-full">
+            <div class="full">Tipo de empaque</div>
+            <div class="w-full">
+                <div class="w-full felx flex-wrap justify-center items-center">
+                    <label>Caja </label><input type="radio" name="empaque" value="Caja" formControlName="empaque" (click)="changeEmpaque('caja')">
+                </div> 
+                <div class="w-full felx flex-wrap justify-center items-center">
+                    <label>Bolsa </label><input type="radio" name="empaque" value="Bolsa" formControlName="empaque" (click)="changeEmpaque('bolsa')">
+                </div>
+                <div *ngIf="isEmpaque!=''" class="w-full felx flex-wrap justify-center items-center">
+                    <label for="">Color</label><input type="color" name="colorEmpaque" formControlName="colorEmpaque">
+                    <div class="full">
+                        <div *ngFor="let estilo of empaqueStyle" type="radio">
+                            <input type="radio" name="tamanoEmpaque" formControlName="tamanoEmpaque" [value]="estilo.tamano" (click)="precioEmpaque(estilo.precio)"><label for=""> {{estilo.tamano}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="w-full">
+                <div class="w-full felx flex-wrap justify-center items-center">
+                    <label>Liston? </label><input type="checkbox" name="liston" formControlName="liston" value="Liston" (click)="changeListon('Liston')">
+                </div>
+                <div *ngIf="isListon!=''" class="w-full felx flex-wrap justify-center items-center">
+                    <label for="">Color: </label><input type="color" name="colorListon" formControlName="colorListon">
+                    <div class="full">
+                        <div *ngFor="let estilo of listonStyle" type="radio">
+                            <input type="radio" name="tamanoListon" formControlName="tamanoListon" [value]="estilo.tamano" (click)="precioListon(estilo.precio)"><label for=""> {{estilo.tamano}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <div class="w-full">
+                <div class="w-full felx flex-wrap justify-center items-center">
+                    <label>Relleno? </label><input type="checkbox" name="relleno" formControlName="relleno" value="relleno" (click)="changeRelleno('Relleno')">
+                </div> 
+                <div *ngIf="isRelleno!=''" class="w-full felx flex-wrap justify-center items-center">
+                    <label for="">Color: </label><input type="color" name="colorRelleno" formControlName="colorRelleno">
+                    <div class="full">
+                        <div *ngFor="let estilo of rellenoStyle" type="radio">
+                            <input type="radio" name="nombreRelleno" formControlName="nombreRelleno" [value]="estilo.nombre" (click)="precioRelleno(estilo.precio)"><label for=""> {{estilo.nombre}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

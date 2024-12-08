@@ -1,0 +1,11 @@
+<div *ngFor="let producto of listaPublicado" [routerLink]="['/producto/'+producto.idProducto]" class="flex flex-wrap card-product rounded-md py-5 px-3 my-1 mx-2 bg-gray-50 h-96 shadow-inner drop-shadow-none hover:drop-shadow-xl transition-all">
+    <div class="card-superior w-full mb-2 h-52 overflow-hidden rounded-lg shadow-lg">
+        <img class="w-full" [src]="'http://127.0.0.1:5000/'+producto.foto" alt="camisa">
+    </div>
+    <div class="card-inferior w-full flex flex-wrap justify-center items-center mt-2 flex-grow">
+        <h5 class="card-title w-full text-center text-yellow-400 text-base font-black">{{producto.nombre}}</h5>
+        <p class="card-desc w-full text-center text-yellow-900 text-xs font-thin">{{producto.descripcionCorta}}</p>
+        <p class="card-precio w-full text-center text-yellow-500 text-base font-bold">{{producto.precio | currency}}</p>
+        <button class="card-button text-center w-2/3 overflow-hidden border-2 border-yellow-400 bg-transparent text-yellow-400 py-1 px-3 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 z-50 active:bg-yellow-600 active:scale-95" (click)="agregarCarrito(producto.idProducto, 1); evitarPropagacion($event)">Regalar</button>
+    </div>
+</div>

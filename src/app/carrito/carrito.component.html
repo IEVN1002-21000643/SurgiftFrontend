@@ -1,0 +1,57 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-3/4 flex px-2">
+        <form *ngIf="listaProductos.length" class="w-full">
+            <div *ngFor="let producto of listaProductos" class="w-full rounded-md border-gray-400 border h-32 overflow-hidden py-2 ps-2 pe-6 flex justify-between items-centermb-2 my-2">
+                <div class="flex h-30 w-36 overflow-hidden justify-center items-center">
+                    <img class="h-28" [src]="'http://127.0.0.1:5000/'+producto.foto" alt="">
+                </div>
+                <div class="w-2/12 flex justify-center items-center text-center">
+                    <h5>{{producto.nombre}}</h5>
+                </div>
+                <div class="w-1/3 flex justify-center items-center flex-wrap">
+                    <h5>{{producto.decoracion}}</h5>
+                </div>
+                <div class="w-fit flex justify-center items-center text-center">
+                    {{producto.precioDeco | currency}}
+                </div>
+                <div class="w-fit flex justify-center items-center text-center">
+                    {{producto.precio | currency}}
+                </div>
+                <div class="w-fit flex justify-center items-center">
+                    <input class="min-w-8 w-14 border rounded border-yellow-400 text-center" type="number" [(ngModel)]="producto.cantidad" [name]="producto.idProducto+producto.decoracion" (change)="agregarCantidad(producto.idProducto, producto.cantidad, [producto.decoracion, producto.precioDeco], ['', ''])">
+                </div>
+                <div class="w-fit flex justify-center items-center">
+                    {{producto.subtotal | currency}}
+                </div>
+                <div class="w-fit flex justify-center items-center text-center">
+                    <button class="h-10 w-10 border-2 mx-3 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" (click)="eliminar(producto.idProducto, producto.decoracion)">X</button>
+                </div>
+            </div>
+            <div class="w-full flex flex-wrap justify-end mt-3">
+                <button class="py-2 px-5 border-2 mx-3 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" (click)="vaciar()">Vaciar Carrito</button>
+            </div>
+        </form>
+    </div>
+    <div class="w-1/4 flex flex-wrap px-2">
+        <div class="w-full rounded-md border-gray-400 border min-h-32 overflow-hidden py-2 px-3">
+            <h5 class="w-full justify-center text-center text-black font-bold text-lg">Resumen de compra</h5>
+            <div class="w-full flex justify-between">
+                Subtotal: <span class="font-bold">{{subtotal | currency}}</span>
+            </div>
+            <div class="w-full flex justify-between">
+                Servicio Regalo: <span class="font-bold">{{servicio | currency}}</span>
+            </div>
+            <div class="w-full flex justify-between">
+                Entrega: <span class="font-bold">{{entrega | currency}}</span>
+            </div>
+            <hr>
+            <div class="w-full flex justify-between pt-2">
+                Total: <span class="font-bold">{{total | currency}}</span>
+            </div>
+            <div class="flex flex-wrap w-full justify-end mt-4">
+                <a [routerLink]="['/finalizarCompra']"><button class="py-2 px-5 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95">Finalizar compra</button></a>
+            </div>
+            
+        </div>
+    </div>
+</div>

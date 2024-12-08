@@ -1,0 +1,61 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-full flex flex-wrap my-2">
+        <button class="px-2 py-1 border border-blue-500 text-blue-500 rounded transition-all hover:rounded-none hover:bg-blue-500 hover:text-white" [routerLink]="['/admin/nuevoRepartidor']">Agregar Repartidor</button>
+    </div>
+    <div class="w-full flex flex-wrap my-2">
+        <div class="mx-2 text-black hover:text-blue-500" (click)="verTodos()" >Todos</div>
+        <div class="mx-2 text-black hover:text-blue-500" (click)="verPapelera()">Papelera</div>
+    </div>
+    <table *ngIf="showTodos" class="w-full">
+        <thead class="w-full">
+            <tr class="w-full">
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Nombre</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Sueldo</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Telefono</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Compañia</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Estatus</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="group border rounded border-gray-300 shadow-inner shadow-gray-200" *ngFor="let repartidor of repartidoresDisponible">
+                <td  class="p-2 flex justify-center items-center"><div class="w-24 h-24 overflow-hidden flex justify-center items-center"><img class="w-full" [src]="'http://127.0.0.1:5000/'+repartidor.foto"></div></td>
+                <td  class="p-2"><div>{{repartidor.nombre}}</div><div class="group-hover:text-black text-white transition-all">idRepartidor: {{repartidor.idRepartidor}}</div></td>
+                <td  class="p-2">{{repartidor.sueldo | currency}}</td>
+                <td  class="p-2">{{repartidor.telefono}}</td>
+                <td  class="p-2">{{repartidor.compania}}</td>
+                <td  class="p-2">{{repartidor.estatus}}</td>
+                <td  class="p-2"><div [routerLink]="['/admin/editarRepartidor',repartidor.idRepartidor]" class="w-full border-blue-600 rounded bg-blue-500 text-white py-2 px-3 text-center">Editar</div></td>
+                <td  class="p-2"><div (click)="changeEstatus(repartidor.idRepartidor, '2')" class="w-full border-red-600 rounded bg-red-500 text-white py-2 px-3 text-center">Papelera</div></td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="showPapelera" class="w-full">
+        <thead class="w-full">
+            <tr class="w-full">
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Nombre</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Sueldo</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Telefono</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Compañia</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 px-2 border-r border-gray-300">Estatus</td>
+                <td class="bg-gradient-to-b from-white to-gray-200 border-gray-300"></td>
+                <td class="bg-gradient-to-b from-white to-gray-200"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="group border rounded border-gray-300 shadow-inner shadow-gray-200" *ngFor="let repartidor of repartidoresPapelera">
+                <td  class="p-2 flex justify-center items-center"><div class="w-24 h-24 overflow-hidden flex justify-center items-center"><img class="w-full" [src]="'http://127.0.0.1:5000/'+repartidor.foto"></div></td>
+                <td  class="p-2"><div>{{repartidor.nombre}}</div><div class="group-hover:text-black text-white transition-all">idRepartidor: {{repartidor.idRepartidor}}</div></td>
+                <td  class="p-2">{{repartidor.sueldo | currency}}</td>
+                <td  class="p-2">{{repartidor.telefono}}</td>
+                <td  class="p-2">{{repartidor.compania}}</td>
+                <td  class="p-2">{{repartidor.estatus}}</td>
+                <td  class="p-2"><div (click)="changeEstatus(repartidor.idRepartidor, '1')" class="w-full border-blue-600 rounded bg-blue-500 text-white py-2 px-3 text-center">Publicar</div></td>
+                <td  class="p-2"><div (click)="eliminarRepartidor(repartidor.idRepartidor)" class="w-full border-red-600 rounded bg-red-500 text-white py-2 px-3 text-center">Eliminar</div></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

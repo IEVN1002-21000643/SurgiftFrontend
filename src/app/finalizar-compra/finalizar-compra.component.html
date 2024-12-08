@@ -1,0 +1,75 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <div class="w-7/12">
+        <form [formGroup]="formPago" (ngSubmit)="enviarFormNoUser()" *ngIf="idUser==undefined">
+            <div class="py-10 flex flex-wrap justify-between">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="text" name="nombre" placeholder="Nombre" formControlName="nombre">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="email" name="correo" placeholder="Correo" formControlName="correo">
+                <h5 class="w-full">Dirección de Envio</h5>
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="estado" placeholder="Estado" formControlName="estado">
+                <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="ciudad" placeholder="Ciudad" formControlName="ciudad">
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="colonia" placeholder="Colonia" formControlName="colonia">
+                <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="calle" placeholder="Calle" formControlName="calle">
+                <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroExt" placeholder="Número Ext" formControlName="numExt">
+                <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroInt" placeholder="Número Int" formControlName="numInt">
+                <input class="px-3 py-1 my-2 w-3/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="CP" placeholder="Código Postal" formControlName="cp">
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="tel" name="telefono" placeholder="Teléfono" formControlName="telefono">
+            </div>
+            <div>
+                <div>
+                    <div *ngIf="advertencia!=''">
+                        {{advertencia}}
+                    </div>
+                    <input class="py-2 px-5 my-2 mx-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" type="submit" value="Terminar pago">
+                </div>
+            </div>
+        </form>
+        <form (ngSubmit)="enviarFormUser()" *ngIf="idUser!=undefined">
+            <div class="py-10 flex flex-wrap justify-between">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="text" name="nombre" placeholder="Nombre" [(ngModel)]="datosUser.nombre">
+                <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="email" name="correo" placeholder="Correo" [(ngModel)]="datosUser.correo">
+                <h5 class="w-full">Dirección de Envio</h5>
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="estado" placeholder="Estado" [(ngModel)]="estado">
+                <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="ciudad" placeholder="Ciudad" [(ngModel)]="ciudad">
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="colonia" placeholder="Colonia" [(ngModel)]="colonia">
+                <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="calle" placeholder="Calle" [(ngModel)]="calle">
+                <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroExt" placeholder="Número Ext" [(ngModel)]="numExt">
+                <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroInt" placeholder="Número Int" [(ngModel)]="numInt">
+                <input class="px-3 py-1 my-2 w-3/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="CP" placeholder="Código Postal" [(ngModel)]="cp">
+                <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="tel" name="telefono" placeholder="Teléfono" [(ngModel)]="telefono">
+            </div>
+            <div>
+                <div>
+                    <div *ngIf="advertencia!=''">
+                        {{advertencia}}
+                    </div>
+                    <input class="py-2 px-5 my-2 mx-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400 active:bg-yellow-600 active:scale-95" type="submit" value="Terminar pago">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="w-5/12 py-10 flex flex-wrap justify-center">
+        <div class="w-10/12 border border-gray-500 rounded-lg py-2 px-4 h-fit">
+            <div class="w-full">
+                <h5 class="font-black">Productos</h5>
+                <div *ngFor="let producto of listaProductos" class="ms-4">
+                    <div class="w-full font-bold flex justify-between"><div>{{producto.nombre}}<span class="font-thin">x{{producto.cantidad}}</span></div> <span class="font-normal">{{producto.subtotal | currency}}</span></div>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="w-full">
+                    <div class="w-full font-bold flex justify-between">Regalo servicio <span class="font-normal">{{servicio | currency}}</span></div>
+                </div>
+            </div>
+            <div class="w-full">
+                <div>
+                    <div class="w-full font-bold flex justify-between">Envío <span class="font-normal">{{entrega | currency}}</span></div>
+                </div>
+            </div>
+            <div class="w-full">
+                <div>
+                    <div class="w-full font-bold flex justify-between">Total <span class="font-normal">{{total | currency}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="w-full px-20 py-5 flex flex-wrap">
+    <form (ngSubmit)="onSubmit()" class="w-full" enctype="multipart/form-data">
+        <div class="w-full flex justify-between">
+            <div class="w-4/6 px-3">
+                <div class="w-full">
+                    <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="text" name="nombre" placeholder="Nombre" [(ngModel)]="dataUsuario.nombre" >
+                </div>
+                <div class="w-full flex justify-between flex-wrap my-3 bg-slate-50 py-5 px-20">
+                    <input class="px-3 py-1 my-2 w-full rounded-lg border  border-gray-500 shadow-inner shadow-gray-300" type="email" name="correo" placeholder="Correo" [(ngModel)]="dataUsuario.correo" >
+                    <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="estado" placeholder="Estado" [(ngModel)]="estado" >
+                    <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="ciudad" placeholder="Ciudad" [(ngModel)]="ciudad" >
+                    <input class="px-3 py-1 my-2 w-5/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="colonia" placeholder="Colonia" [(ngModel)]="colonia" >
+                    <input class="px-3 py-1 my-2 w-3/6 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="calle" placeholder="Calle" [(ngModel)]="calle" >
+                    <input class="px-3 py-1 my-2 w-3/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="CP" placeholder="Código Postal" [(ngModel)]="cp" >
+                    <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroExt" placeholder="Número Ext" [(ngModel)]="numExt" >
+                    <input class="px-3 py-1 my-2 w-4/12 rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="text" name="numeroInt" placeholder="Número Int" [(ngModel)]="numInt">
+                    <input class="px-3 py-1 my-2 w-full rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="password" name="contrasena" placeholder="Contraseña" disabled>
+                    <input class="px-3 py-1 my-2 w-full rounded-lg border border-gray-500 shadow-inner shadow-gray-300" type="password" name="repetirContrasena" placeholder="Repite tu Contraseña" disabled>
+                </div>
+            </div>
+            <div class="w-2/6 px-3">
+                <div class="w-full my-3 bg-slate-50 p-3">
+                    <img [src]="'http://127.0.0.1:5000/'+dataUsuario.foto" alt="">
+                    <input class="py-1 my-2 w-full flex justify-center text-center" type="file" (change)="onFileChange($event)" name="foto" accept="image/*">
+                    <div>Fecha de creacion: {{dataUsuario.fechaCreacion | date}}</div>
+                    <select class="w-full py-1 my-2 px-2 bg-transparent border border-yellow-400 rounded-lg" name="estatus" id="estatus" [(ngModel)]="dataUsuario.estatus">
+                        <option value="">-</option>
+                        <option value="0">Administrador</option>
+                        <option value="1">Usuario</option>
+                    </select>
+                    <div *ngIf="advertencia != ''">
+                        {{advertencia}}
+                    </div>
+                    <div class="flex flex-wrap justify-center">
+                        <input class="py-2 px-5 my-2 mx-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400" type="submit" value="Guardar">
+                        <input *ngIf="!botonBorrar" class="py-2 px-5 my-2 mx-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400" type="submit" value="Papelera" (click)="chageStatus('2')">
+                        <input *ngIf="botonBorrar" class="py-2 px-5 my-2 mx-2 border-2 border-yellow-400 bg-transparent text-yellow-400 rounded transition-all hover:text-white font-bold text-lg hover:bg-yellow-400" type="submit" value="Eliminar" (click)="eliminarUsuario()">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </form>
+</div>
